@@ -1,6 +1,6 @@
 import optionsArray from './optionsArray';
 import Option from './Option';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 export default function Game() {
   {
     /* 1. user should be able to choose which option they want 
@@ -12,6 +12,7 @@ export default function Game() {
   }
   const [playerChoice, setPlayerChoice] = useState('');
   const [computerChoice, setComputerChoice] = useState('');
+  const draw = useRef(false);
   return (
     <div className="w-[100%] h-[350px] grid grid-cols-1">
       <div className="flex justify-evenly text-[30px]">
@@ -19,14 +20,25 @@ export default function Game() {
           <h1>Player</h1>
           <div>{playerChoice}</div>
         </div>
-        <div>{optionsArray.map((option) => {
-            if(option.emoji === playerChoice && option.beats === computerChoice){
-                return "Player"
-            };
-            if(option.emoji === computerChoice && option.beats === playerChoice){
-                return "Computer"
-            };
-        })}</div>
+        <div>
+          {draw.current ? "Draw" : ""}
+          {optionsArray.map((option) => {
+            if (
+              option.emoji === playerChoice &&
+              option.beats === computerChoice
+            ) {
+              draw.current = false;
+              return 'Player';
+            }
+            if (
+              option.emoji === computerChoice &&
+              option.beats === playerChoice
+            ) {
+              draw.current = false;
+              return 'Computer';
+            }
+          })}
+        </div>
         <div>
           <h1>Computer</h1>
           <div>{computerChoice}</div>
@@ -36,6 +48,7 @@ export default function Game() {
         {optionsArray.map((option) => {
           return (
             <Option
+              draw = {draw}
               optionEmoji={option.emoji}
               setPlayerChoice={setPlayerChoice}
               setComputerChoice={setComputerChoice}
