@@ -73,6 +73,7 @@ export default function Game() {
         {optionsArray.map((option) => {
           return (
             <Option
+              key={option.id}
               draw={draw}
               optionEmoji={option.emoji}
               setPlayerChoice={setPlayerChoice}
