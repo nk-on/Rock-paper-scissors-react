@@ -1,6 +1,7 @@
 import optionsArray from './optionsArray';
 import Option from './Option';
 import { useEffect, useRef, useState } from 'react';
+import RestartModal from './RestartModal';
 export default function Game() {
   {
     /* 1. user should be able to choose which option they want 
@@ -14,19 +15,29 @@ export default function Game() {
   const [computerChoice, setComputerChoice] = useState('');
   const [playersPoint, setPlayersPoint] = useState(0);
   const [computersPoint, setComputersPoint] = useState(0);
+  const [winner, setWinner] = useState('');
   const draw = useRef(false);
   useEffect(() => {
     optionsArray.forEach((option) => {
       if (option.emoji === playerChoice && option.beats === computerChoice) {
-        setPlayersPoint(playersPoint + 1);
+        setPlayersPoint((playersPoint) => playersPoint + 1);
       }
       if (option.emoji === computerChoice && option.beats === playerChoice) {
-        setComputersPoint(computersPoint + 1);
+        setComputersPoint((computerChoice) => computerChoice + 1);
       }
     });
   }, [playerChoice, computerChoice]);
+  useEffect(() => {
+    if (playersPoint >= 5) {
+      setWinner('Player');
+    }
+    if (computersPoint >= 5) {
+      setWinner('Computer');
+    }
+  }, [playersPoint, computersPoint]);
   return (
     <div className="w-[100%] h-[350px] grid grid-cols-1">
+      {winner.length > 0 && <RestartModal winner={winner} />}
       <div className="flex justify-evenly text-[30px]">
         <div>
           <span>{playersPoint}</span>
