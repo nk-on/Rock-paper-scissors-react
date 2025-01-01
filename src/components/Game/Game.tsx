@@ -11,12 +11,12 @@ export default function Game() {
         
          */
   }
-  const [playerChoice, setPlayerChoice] = useState('');
-  const [computerChoice, setComputerChoice] = useState('');
-  const [playersPoint, setPlayersPoint] = useState(0);
-  const [computersPoint, setComputersPoint] = useState(0);
+  const [playerChoice, setPlayerChoice] = useState<string>('');
+  const [computerChoice, setComputerChoice] = useState<string>('');
+  const [playersPoint, setPlayersPoint] = useState<number>(0);
+  const [computersPoint, setComputersPoint] = useState<number>(0);
   const [winner, setWinner] = useState('');
-  const draw = useRef(false);
+  const draw:React.MutableRefObject<boolean> = useRef(false);
   useEffect(() => {
     optionsArray.forEach((option) => {
       if (option.emoji === playerChoice && option.beats === computerChoice) {
