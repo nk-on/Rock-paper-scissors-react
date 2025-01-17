@@ -24,16 +24,3 @@ This interactive web application, built with **React** and **TypeScript**, bring
 - **Tailwind**: Adds style and flair to the battlefield.
 
 ---
-
-## 🚀 How to Play
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/nk-on/Rock-paper-scissors-react.git
-2.Install dependencies
-   ```bash
-   npm install
-3.Start the development server:
-  ```bash
-  npm run dev
-
