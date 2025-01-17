@@ -31,7 +31,7 @@ This interactive web application, built with **React** and **TypeScript**, bring
    ```bash
    git clone https://github.com/nk-on/Rock-paper-scissors-react.git
 2.Install dependencies
-   npm install
+   ```npm install
 3.Start the development server:
-  npm run dev
+  ```npm run dev
 
